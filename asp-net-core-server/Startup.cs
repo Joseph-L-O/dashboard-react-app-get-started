@@ -40,6 +40,7 @@ namespace AspNetCoreDashboardBackend {
                 configurator.SetDashboardStorage(new DashboardFileStorage(FileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath));
                 configurator.SetDataSourceStorage(CreateDataSourceStorage());
                 configurator.ConfigureDataConnection += Configurator_ConfigureDataConnection;
+                configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
                 return configurator;
             });
         }

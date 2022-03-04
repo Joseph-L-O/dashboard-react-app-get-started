@@ -1,0 +1,1287 @@
+{
+    "dashboardUrls": {
+        "DashboardAction": {
+            "http://localhost:5000/api/dashboard/dashboards/{ID_DO_DASHBOARD}?_=1646324264923": {
+                "Navegador": {
+                    "Dashboard": {
+                        "Title": {
+                            "@Text": "Products"
+                        },
+                        "DataSources": {
+                            "Item1": {
+                                "@Name": "Categories",
+                                "@ConnectionName": "jsonCategories",
+                                "@RootElement": "Products",
+                                "@ComponentName": "jsonDataSource1",
+                                "@ItemType": "JsonDataSource",
+                                "Schema": {
+                                    "Node": {
+                                        "@Name": "root",
+                                        "@Type": "System.Object",
+                                        "@Selected": "true",
+                                        "@NodeType": "Object",
+                                        "Node": [
+                                            {
+                                                "@Name": "CategoryId",
+                                                "@Type": "System.Nullable`1[System.Int64]",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "CategoryName",
+                                                "@Type": "System.String",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "Description",
+                                                "@Type": "System.String",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "Products",
+                                                "@Selected": "true",
+                                                "@NodeType": "Array",
+                                                "Node": [
+                                                    {
+                                                        "@Name": "CategoryId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "Discontinued",
+                                                        "@Type": "System.Nullable`1[System.Boolean]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ProductId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ProductName",
+                                                        "@Type": "System.String",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "QuantityPerUnit",
+                                                        "@Type": "System.String",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ReorderLevel",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "Supplier",
+                                                        "@Type": "System.Object",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "SupplierId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitPrice",
+                                                        "@Type": "System.Nullable`1[System.Double]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitsInStock",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitsOnOrder",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "Items": {
+                            "Item1": {
+                                "@ComponentName": "cardDashboardItem1",
+                                "@Name": "Products",
+                                "@DataSource": "jsonDataSource1",
+                                "@ItemType": "Card",
+                                "DataItems": {
+                                    "Item1": {
+                                        "@DataMember": "ProductName",
+                                        "@DefaultId": "DataItem0",
+                                        "@ItemType": "Dimension"
+                                    },
+                                    "Item2": {
+                                        "@DataMember": "QuantityPerUnit",
+                                        "@DefaultId": "DataItem1",
+                                        "@ItemType": "Dimension"
+                                    },
+                                    "Item3": {
+                                        "@DataMember": "UnitPrice",
+                                        "@DefaultId": "DataItem2",
+                                        "@ItemType": "Measure",
+                                        "NumericFormat": {
+                                            "@FormatType": "Currency"
+                                        }
+                                    }
+                                },
+                                "SeriesDimensions": {
+                                    "Item1": {
+                                        "@DefaultId": "DataItem1",
+                                        "@ItemType": "SeriesDimension"
+                                    },
+                                    "Item2": {
+                                        "@DefaultId": "DataItem0",
+                                        "@ItemType": "SeriesDimension"
+                                    }
+                                },
+                                "Cards": {
+                                    "Item1": {
+                                        "@ItemType": "Card",
+                                        "ActualValue": {
+                                            "@DefaultId": "DataItem2"
+                                        },
+                                        "AbsoluteVariationNumericFormat": null,
+                                        "PercentVariationNumericFormat": null,
+                                        "PercentOfTargetNumericFormat": null,
+                                        "LayoutTemplate": {
+                                            "@MinWidth": "270",
+                                            "@MaxWidth": "270",
+                                            "@Type": "Centered",
+                                            "MainValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "Title",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "SubValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "Subtitle",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "ActualValue",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomSubValue1": {
+                                                "@Visible": "true",
+                                                "@ValueType": "AbsoluteVariation",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomSubValue2": {
+                                                "@Visible": "true",
+                                                "@ValueType": "PercentVariation",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "DeltaIndicator": {
+                                                "@Visible": "true"
+                                            },
+                                            "Sparkline": {
+                                                "@Visible": "true"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "LayoutTree": {
+                            "LayoutItems": {
+                                "Item1": {
+                                    "@ItemType": "LayoutGroup",
+                                    "LayoutItems": {
+                                        "Item1": {
+                                            "@DashboardItem": "cardDashboardItem1",
+                                            "@ItemType": "LayoutItem"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Insomnia": {
+                    "Dashboard": {
+                        "Title": {
+                            "@Text": "Products"
+                        },
+                        "DataSources": {
+                            "Item1": {
+                                "@Name": "Categories",
+                                "@ConnectionName": "jsonCategories",
+                                "@RootElement": "Products",
+                                "@ComponentName": "jsonDataSource1",
+                                "@ItemType": "JsonDataSource",
+                                "Schema": {
+                                    "Node": {
+                                        "@Name": "root",
+                                        "@Type": "System.Object",
+                                        "@Selected": "true",
+                                        "@NodeType": "Object",
+                                        "Node": [
+                                            {
+                                                "@Name": "CategoryId",
+                                                "@Type": "System.Nullable`1[System.Int64]",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "CategoryName",
+                                                "@Type": "System.String",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "Description",
+                                                "@Type": "System.String",
+                                                "@Selected": "true",
+                                                "@NodeType": "Property"
+                                            },
+                                            {
+                                                "@Name": "Products",
+                                                "@Selected": "true",
+                                                "@NodeType": "Array",
+                                                "Node": [
+                                                    {
+                                                        "@Name": "CategoryId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "Discontinued",
+                                                        "@Type": "System.Nullable`1[System.Boolean]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ProductId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ProductName",
+                                                        "@Type": "System.String",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "QuantityPerUnit",
+                                                        "@Type": "System.String",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "ReorderLevel",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "Supplier",
+                                                        "@Type": "System.Object",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "SupplierId",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitPrice",
+                                                        "@Type": "System.Nullable`1[System.Double]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitsInStock",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    },
+                                                    {
+                                                        "@Name": "UnitsOnOrder",
+                                                        "@Type": "System.Nullable`1[System.Int64]",
+                                                        "@Selected": "true",
+                                                        "@NodeType": "Property"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "Items": {
+                            "Item1": {
+                                "@ComponentName": "cardDashboardItem1",
+                                "@Name": "Products",
+                                "@DataSource": "jsonDataSource1",
+                                "@ItemType": "Card",
+                                "DataItems": {
+                                    "Item1": {
+                                        "@DataMember": "ProductName",
+                                        "@DefaultId": "DataItem0",
+                                        "@ItemType": "Dimension"
+                                    },
+                                    "Item2": {
+                                        "@DataMember": "QuantityPerUnit",
+                                        "@DefaultId": "DataItem1",
+                                        "@ItemType": "Dimension"
+                                    },
+                                    "Item3": {
+                                        "@DataMember": "UnitPrice",
+                                        "@DefaultId": "DataItem2",
+                                        "@ItemType": "Measure",
+                                        "NumericFormat": {
+                                            "@FormatType": "Currency"
+                                        }
+                                    }
+                                },
+                                "SeriesDimensions": {
+                                    "Item1": {
+                                        "@DefaultId": "DataItem1",
+                                        "@ItemType": "SeriesDimension"
+                                    },
+                                    "Item2": {
+                                        "@DefaultId": "DataItem0",
+                                        "@ItemType": "SeriesDimension"
+                                    }
+                                },
+                                "Cards": {
+                                    "Item1": {
+                                        "@ItemType": "Card",
+                                        "ActualValue": {
+                                            "@DefaultId": "DataItem2"
+                                        },
+                                        "AbsoluteVariationNumericFormat": null,
+                                        "PercentVariationNumericFormat": null,
+                                        "PercentOfTargetNumericFormat": null,
+                                        "LayoutTemplate": {
+                                            "@MinWidth": "270",
+                                            "@MaxWidth": "270",
+                                            "@Type": "Centered",
+                                            "MainValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "Title",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "SubValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "Subtitle",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomValue": {
+                                                "@Visible": "true",
+                                                "@ValueType": "ActualValue",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomSubValue1": {
+                                                "@Visible": "true",
+                                                "@ValueType": "AbsoluteVariation",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "BottomSubValue2": {
+                                                "@Visible": "true",
+                                                "@ValueType": "PercentVariation",
+                                                "@DimensionIndex": "0"
+                                            },
+                                            "DeltaIndicator": {
+                                                "@Visible": "true"
+                                            },
+                                            "Sparkline": {
+                                                "@Visible": "true"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "LayoutTree": {
+                            "LayoutItems": {
+                                "Item1": {
+                                    "@ItemType": "LayoutGroup",
+                                    "LayoutItems": {
+                                        "Item1": {
+                                            "@DashboardItem": "cardDashboardItem1",
+                                            "@ItemType": "LayoutItem"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "http://localhost:5000/api/dashboard/dashboards": [
+                {
+                    "id": "products",
+                    "name": "Products"
+                },
+                {
+                    "id": "support",
+                    "name": "Support"
+                }
+            ]
+        },
+        "GetDashboardsAction": {
+            "http://localhost:5000/api/dashboard/dashboards": [
+                {
+                    "id": "products",
+                    "name": "Products"
+                },
+                {
+                    "id": "support",
+                    "name": "Support"
+                }
+            ]
+        }
+    },
+    "dataServiceUrls": {
+        "ConvertItemAction": {
+            "http://localhost:5000/api/dashboard/data/ConvertItemAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        },
+        "DashboardItemBatchGetAction": {
+            "http://localhost:5000/api/dashboard/data/DashboardItemBatchGetAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "Index was outside the bounds of the array."
+                },
+                "POST": {}
+            }
+        },
+        "DashboardItemGetAction": {
+            "http://localhost:5000/api/dashboard/data/DashboardItemGetAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "Index was outside the bounds of the array."
+                },
+                "POST": {}
+            }
+        },
+        "DimensionFilterItemsAction": {
+            "http://localhost:5000/api/dashboard/data/DimensionFilterItemsAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        },
+        "DimensionFilterStringAction": {
+            "http://localhost:5000/api/dashboard/data/DimensionFilterStringAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        },
+        "DimensionUniqueValuesAction": {
+            "http://localhost:5000/api/dashboard/data/DimensionUniqueValuesAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        },
+        "FieldListAction": {
+            "http://localhost:5000/api/dashboard/data/FieldListAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {
+                    "BODY": {
+                        "dashboardId": "support",
+                        "dashboard": {
+                            "Title": {
+                                "@Text": "Support"
+                            },
+                            "Items": {
+                                "Item1": {
+                                    "@ItemType": "ListBox",
+                                    "@ComponentName": "listBoxDashboardItem1",
+                                    "@Name": "Platform",
+                                    "@DataSource": "jsonDataSource1",
+                                    "DataItems": {
+                                        "Item1": {
+                                            "@ItemType": "Dimension",
+                                            "@DataMember": "ProductName",
+                                            "@DefaultId": "DataItem0"
+                                        },
+                                        "Item2": {
+                                            "@ItemType": "Measure",
+                                            "@DataMember": "ResolvedTime (Sum)",
+                                            "@DefaultId": "DataItem2"
+                                        }
+                                    },
+                                    "HiddenMeasures": {
+                                        "Item1": {
+                                            "@ItemType": "Measure",
+                                            "@DefaultId": "DataItem2"
+                                        }
+                                    },
+                                    "FilterDimensions": {
+                                        "Item1": {
+                                            "@ItemType": "Dimension",
+                                            "@DefaultId": "DataItem0"
+                                        }
+                                    },
+                                    "InteractivityOptions": {
+                                        "@IgnoreMasterFilters": "false"
+                                    },
+                                    "@ListBoxType": "Radio",
+                                    "@ShowAllValue": "false"
+                                },
+                                "Item2": {
+                                    "@ItemType": "Chart",
+                                    "@ComponentName": "chartDashboardItem2",
+                                    "@Name": "Bug Count",
+                                    "@DataSource": "jsonDataSource1",
+                                    "DataItems": {
+                                        "Item1": {
+                                            "@ItemType": "Measure",
+                                            "@DataMember": "ResolvedTime (Sum)",
+                                            "@DefaultId": "DataItem0"
+                                        },
+                                        "Item2": {
+                                            "@ItemType": "Dimension",
+                                            "@DataMember": "Employee",
+                                            "@DefaultId": "DataItem1"
+                                        },
+                                        "Item3": {
+                                            "@ItemType": "Dimension",
+                                            "@DataMember": "IssueType",
+                                            "@DefaultId": "DataItem2"
+                                        }
+                                    },
+                                    "SeriesDimensions": {
+                                        "Item1": {
+                                            "@ItemType": "SeriesDimension",
+                                            "@DefaultId": "DataItem2"
+                                        }
+                                    },
+                                    "Arguments": {
+                                        "Item1": {
+                                            "@ItemType": "Argument",
+                                            "@DefaultId": "DataItem1"
+                                        }
+                                    },
+                                    "Panes": {
+                                        "Item1": {
+                                            "@ItemType": "Pane",
+                                            "Series": {
+                                                "Item1": {
+                                                    "@ItemType": "Simple",
+                                                    "@SeriesType": "StackedBar",
+                                                    "Value": {
+                                                        "@DefaultId": "DataItem0"
+                                                    }
+                                                }
+                                            },
+                                            "@Name": "Pane 1"
+                                        }
+                                    }
+                                }
+                            },
+                            "DataSources": {
+                                "Item1": {
+                                    "@ItemType": "JsonDataSource",
+                                    "@Name": "Support",
+                                    "@ComponentName": "jsonDataSource1",
+                                    "@ConnectionName": "jsonSupport",
+                                    "@RootElement": "Employee",
+                                    "Schema": {
+                                        "Node": {
+                                            "Node": [
+                                                {
+                                                    "Node": [
+                                                        {
+                                                            "@Name": "Employee",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.String"
+                                                        },
+                                                        {
+                                                            "@Name": "IssueType",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.String"
+                                                        },
+                                                        {
+                                                            "@Name": "ProductName",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.String"
+                                                        },
+                                                        {
+                                                            "@Name": "ResolvedTime (Sum)",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        }
+                                                    ],
+                                                    "@Name": "Employee",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Array"
+                                                }
+                                            ],
+                                            "@Name": "root",
+                                            "@Selected": "true",
+                                            "@NodeType": "Object",
+                                            "@Type": "System.Object"
+                                        }
+                                    }
+                                },
+                                "Item2": {
+                                    "@ItemType": "JsonDataSource",
+                                    "@Name": "Categories",
+                                    "@ComponentName": "jsonDataSource2",
+                                    "@ConnectionName": "jsonCategories",
+                                    "@RootElement": "Products",
+                                    "Schema": {
+                                        "Node": {
+                                            "Node": [
+                                                {
+                                                    "@Name": "CategoryId",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property",
+                                                    "@Type": "System.Nullable`1[System.Int64]"
+                                                },
+                                                {
+                                                    "@Name": "CategoryName",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property",
+                                                    "@Type": "System.String"
+                                                },
+                                                {
+                                                    "@Name": "Description",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property",
+                                                    "@Type": "System.String"
+                                                },
+                                                {
+                                                    "Node": [
+                                                        {
+                                                            "@Name": "CategoryId",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        },
+                                                        {
+                                                            "@Name": "Discontinued",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Boolean]"
+                                                        },
+                                                        {
+                                                            "@Name": "ProductId",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        },
+                                                        {
+                                                            "@Name": "ProductName",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.String"
+                                                        },
+                                                        {
+                                                            "@Name": "QuantityPerUnit",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.String"
+                                                        },
+                                                        {
+                                                            "@Name": "ReorderLevel",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        },
+                                                        {
+                                                            "@Name": "Supplier",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Object"
+                                                        },
+                                                        {
+                                                            "@Name": "SupplierId",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitPrice",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Double]"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitsInStock",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitsOnOrder",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property",
+                                                            "@Type": "System.Nullable`1[System.Int64]"
+                                                        }
+                                                    ],
+                                                    "@Name": "Products",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Array"
+                                                }
+                                            ],
+                                            "@Name": "root",
+                                            "@Selected": "true",
+                                            "@NodeType": "Object",
+                                            "@Type": "System.Object"
+                                        }
+                                    }
+                                }
+                            },
+                            "LayoutTree": {
+                                "LayoutItems": {
+                                    "Item1": {
+                                        "@ItemType": "LayoutGroup",
+                                        "LayoutItems": {
+                                            "Item1": {
+                                                "@ItemType": "LayoutGroup",
+                                                "LayoutItems": {
+                                                    "Item1": {
+                                                        "@ItemType": "LayoutItem",
+                                                        "@Weight": "0.3027932960893855",
+                                                        "@DashboardItem": "listBoxDashboardItem1"
+                                                    },
+                                                    "Item2": {
+                                                        "@ItemType": "LayoutItem",
+                                                        "@Weight": "1.6972067039106145",
+                                                        "@DashboardItem": "chartDashboardItem2"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "parameters": [],
+                        "dataSourceId": "jsonDataSource1",
+                        "dataMember": "",
+                        "fieldPath": ""
+                    },
+                    "response": [
+                        {
+                            "Name": "Employee",
+                            "DataMember": "Employee",
+                            "NodeType": "DataField",
+                            "ChildNodes": null,
+                            "DisplayName": "Employee",
+                            "FieldType": "Text",
+                            "IsDataFieldNode": true,
+                            "IsDataMemberNode": true,
+                            "IsConvertible": true,
+                            "IsComparable": true,
+                            "IsAggregateCalculatedField": false,
+                            "IsCorruptedCalculatedField": false,
+                            "HasDashboardAggrFunction": false,
+                            "DefaultNumericFormat": null,
+                            "IsList": false,
+                            "IsComplex": false,
+                            "IsDummyParent": false,
+                            "IsDummyNode": false,
+                            "EditorValues": null
+                        },
+                        {
+                            "Name": "IssueType",
+                            "DataMember": "IssueType",
+                            "NodeType": "DataField",
+                            "ChildNodes": null,
+                            "DisplayName": "IssueType",
+                            "FieldType": "Text",
+                            "IsDataFieldNode": true,
+                            "IsDataMemberNode": true,
+                            "IsConvertible": true,
+                            "IsComparable": true,
+                            "IsAggregateCalculatedField": false,
+                            "IsCorruptedCalculatedField": false,
+                            "HasDashboardAggrFunction": false,
+                            "DefaultNumericFormat": null,
+                            "IsList": false,
+                            "IsComplex": false,
+                            "IsDummyParent": false,
+                            "IsDummyNode": false,
+                            "EditorValues": null
+                        },
+                        {
+                            "Name": "ProductName",
+                            "DataMember": "ProductName",
+                            "NodeType": "DataField",
+                            "ChildNodes": null,
+                            "DisplayName": "ProductName",
+                            "FieldType": "Text",
+                            "IsDataFieldNode": true,
+                            "IsDataMemberNode": true,
+                            "IsConvertible": true,
+                            "IsComparable": true,
+                            "IsAggregateCalculatedField": false,
+                            "IsCorruptedCalculatedField": false,
+                            "HasDashboardAggrFunction": false,
+                            "DefaultNumericFormat": null,
+                            "IsList": false,
+                            "IsComplex": false,
+                            "IsDummyParent": false,
+                            "IsDummyNode": false,
+                            "EditorValues": null
+                        },
+                        {
+                            "Name": "ResolvedTime (Sum)",
+                            "DataMember": "ResolvedTime (Sum)",
+                            "NodeType": "DataField",
+                            "ChildNodes": null,
+                            "DisplayName": "ResolvedTime (Sum)",
+                            "FieldType": "Integer",
+                            "IsDataFieldNode": true,
+                            "IsDataMemberNode": true,
+                            "IsConvertible": false,
+                            "IsComparable": false,
+                            "IsAggregateCalculatedField": false,
+                            "IsCorruptedCalculatedField": false,
+                            "HasDashboardAggrFunction": false,
+                            "DefaultNumericFormat": null,
+                            "IsList": false,
+                            "IsComplex": true,
+                            "IsDummyParent": false,
+                            "IsDummyNode": false,
+                            "EditorValues": null
+                        }
+                    ]
+                }
+            }
+        },
+        "GetColoringSchemeAction": {
+            "http://localhost:5000/api/dashboard/data/GetColoringSchemeAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {
+                    "BODY": {
+                        "Dashboard": {
+                            "Title": {
+                                "@Text": "Products"
+                            },
+                            "DataSources": {
+                                "Item1": {
+                                    "@Name": "Categories",
+                                    "@ConnectionName": "jsonCategories",
+                                    "@RootElement": "Products",
+                                    "@ComponentName": "jsonDataSource1",
+                                    "@ItemType": "JsonDataSource",
+                                    "Schema": {
+                                        "Node": {
+                                            "@Name": "root",
+                                            "@Type": "System.Object",
+                                            "@Selected": "true",
+                                            "@NodeType": "Object",
+                                            "Node": [
+                                                {
+                                                    "@Name": "CategoryId",
+                                                    "@Type": "System.Nullable`1[System.Int64]",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property"
+                                                },
+                                                {
+                                                    "@Name": "CategoryName",
+                                                    "@Type": "System.String",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property"
+                                                },
+                                                {
+                                                    "@Name": "Description",
+                                                    "@Type": "System.String",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Property"
+                                                },
+                                                {
+                                                    "@Name": "Products",
+                                                    "@Selected": "true",
+                                                    "@NodeType": "Array",
+                                                    "Node": [
+                                                        {
+                                                            "@Name": "CategoryId",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "Discontinued",
+                                                            "@Type": "System.Nullable`1[System.Boolean]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "ProductId",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "ProductName",
+                                                            "@Type": "System.String",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "QuantityPerUnit",
+                                                            "@Type": "System.String",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "ReorderLevel",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "Supplier",
+                                                            "@Type": "System.Object",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "SupplierId",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitPrice",
+                                                            "@Type": "System.Nullable`1[System.Double]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitsInStock",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        },
+                                                        {
+                                                            "@Name": "UnitsOnOrder",
+                                                            "@Type": "System.Nullable`1[System.Int64]",
+                                                            "@Selected": "true",
+                                                            "@NodeType": "Property"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "Items": {
+                                "Item1": {
+                                    "@ComponentName": "cardDashboardItem1",
+                                    "@Name": "Products",
+                                    "@DataSource": "jsonDataSource1",
+                                    "@ItemType": "Card",
+                                    "DataItems": {
+                                        "Item1": {
+                                            "@DataMember": "ProductName",
+                                            "@DefaultId": "DataItem0",
+                                            "@ItemType": "Dimension"
+                                        },
+                                        "Item2": {
+                                            "@DataMember": "QuantityPerUnit",
+                                            "@DefaultId": "DataItem1",
+                                            "@ItemType": "Dimension"
+                                        },
+                                        "Item3": {
+                                            "@DataMember": "UnitPrice",
+                                            "@DefaultId": "DataItem2",
+                                            "@ItemType": "Measure",
+                                            "NumericFormat": {
+                                                "@FormatType": "Currency"
+                                            }
+                                        }
+                                    },
+                                    "SeriesDimensions": {
+                                        "Item1": {
+                                            "@DefaultId": "DataItem1",
+                                            "@ItemType": "SeriesDimension"
+                                        },
+                                        "Item2": {
+                                            "@DefaultId": "DataItem0",
+                                            "@ItemType": "SeriesDimension"
+                                        }
+                                    },
+                                    "Cards": {
+                                        "Item1": {
+                                            "@ItemType": "Card",
+                                            "ActualValue": {
+                                                "@DefaultId": "DataItem2"
+                                            },
+                                            "AbsoluteVariationNumericFormat": null,
+                                            "PercentVariationNumericFormat": null,
+                                            "PercentOfTargetNumericFormat": null,
+                                            "LayoutTemplate": {
+                                                "@MinWidth": "270",
+                                                "@MaxWidth": "270",
+                                                "@Type": "Centered",
+                                                "MainValue": {
+                                                    "@Visible": "true",
+                                                    "@ValueType": "Title",
+                                                    "@DimensionIndex": "0"
+                                                },
+                                                "SubValue": {
+                                                    "@Visible": "true",
+                                                    "@ValueType": "Subtitle",
+                                                    "@DimensionIndex": "0"
+                                                },
+                                                "BottomValue": {
+                                                    "@Visible": "true",
+                                                    "@ValueType": "ActualValue",
+                                                    "@DimensionIndex": "0"
+                                                },
+                                                "BottomSubValue1": {
+                                                    "@Visible": "true",
+                                                    "@ValueType": "AbsoluteVariation",
+                                                    "@DimensionIndex": "0"
+                                                },
+                                                "BottomSubValue2": {
+                                                    "@Visible": "true",
+                                                    "@ValueType": "PercentVariation",
+                                                    "@DimensionIndex": "0"
+                                                },
+                                                "DeltaIndicator": {
+                                                    "@Visible": "true"
+                                                },
+                                                "Sparkline": {
+                                                    "@Visible": "true"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "LayoutTree": {
+                                "LayoutItems": {
+                                    "Item1": {
+                                        "@ItemType": "LayoutGroup",
+                                        "LayoutItems": {
+                                            "Item1": {
+                                                "@DashboardItem": "cardDashboardItem1",
+                                                "@ItemType": "LayoutItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "dashboardId": "dashboard1",
+                        "itemId": "",
+                        "parameters": [],
+                        "query": {}
+                    }
+                }
+            },
+            "GetDashboardPaletteAction": {
+                "http://localhost:5000/api/dashboard/data/GetDashboardPaletteAction": {
+                    "GET": {
+                        "status": 405
+                    },
+                    "POST": {
+                        "BODY": {
+                            "dashboardId": "ID_DO_DASHBOARD"
+                        },
+                        "response": {
+                            "Item1": {
+                                "@ItemType": "Color",
+                                "#text": "-10515563"
+                            },
+                            "Item2": {
+                                "@ItemType": "Color",
+                                "#text": "-4567727"
+                            },
+                            "Item3": {
+                                "@ItemType": "Color",
+                                "#text": "-5273005"
+                            },
+                            "Item4": {
+                                "@ItemType": "Color",
+                                "#text": "-6987919"
+                            },
+                            "Item5": {
+                                "@ItemType": "Color",
+                                "#text": "-8022426"
+                            },
+                            "Item6": {
+                                "@ItemType": "Color",
+                                "#text": "-8492916"
+                            },
+                            "Item7": {
+                                "@ItemType": "Color",
+                                "#text": "-10523243"
+                            },
+                            "Item8": {
+                                "@ItemType": "Color",
+                                "#text": "-5482852"
+                            },
+                            "Item9": {
+                                "@ItemType": "Color",
+                                "#text": "-5853357"
+                            },
+                            "Item10": {
+                                "@ItemType": "Color",
+                                "#text": "-6983329"
+                            },
+                            "Item11": {
+                                "@ItemType": "Color",
+                                "#text": "-10641791"
+                            },
+                            "Item12": {
+                                "@ItemType": "Color",
+                                "#text": "-5867621"
+                            },
+                            "Item13": {
+                                "@ItemType": "Color",
+                                "#text": "-11886166"
+                            },
+                            "Item14": {
+                                "@ItemType": "Color",
+                                "#text": "-9338427"
+                            },
+                            "Item15": {
+                                "@ItemType": "Color",
+                                "#text": "-3898051"
+                            },
+                            "Item16": {
+                                "@ItemType": "Color",
+                                "#text": "-4472183"
+                            },
+                            "Item17": {
+                                "@ItemType": "Color",
+                                "#text": "-6466719"
+                            },
+                            "Item18": {
+                                "@ItemType": "Color",
+                                "#text": "-11309378"
+                            },
+                            "Item19": {
+                                "@ItemType": "Color",
+                                "#text": "-10725506"
+                            },
+                            "Item20": {
+                                "@ItemType": "Color",
+                                "#text": "-1857965"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "GetMapShapeFileAction": {
+            "http://localhost:5000/api/dashboard/data/GetMapShapeFileAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "Index was outside the bounds of the array."
+                },
+                "POST": {}
+            }
+        },
+        "GetUnderlyingDataAction": {
+            "http://localhost:5000/api/dashboard/data/GetUnderlyingDataAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "Index was outside the bounds of the array."
+                },
+                "POST": {}
+            }
+        },
+        "MarkDataSourcesForReloadAction": {
+            "http://localhost:5000/api/dashboard/data/MarkDataSourcesForReloadAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        },
+        "ParameterValuesAction": {
+            "http://localhost:5000/api/dashboard/data/ParameterValuesAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "Index was outside the bounds of the array."
+                },
+                "POST": {}
+            }
+        },
+        "PerformExportAction": {
+            "http://localhost:5000/api/dashboard/data/PerformExportAction": {
+                "GET": {
+                    "status": 405
+                },
+                "POST": {}
+            }
+        }
+    },
+    "dataSourceUrls": {
+        "GetDataSourcesAction": {
+            "http://localhost:5000/api/dashboard/dataSources": {
+                "Item1": {
+                    "@Name": "Support",
+                    "@ConnectionName": "jsonSupport",
+                    "@RootElement": "Employee",
+                    "@ItemType": "JsonDataSource"
+                },
+                "Item2": {
+                    "@Name": "Categories",
+                    "@ConnectionName": "jsonCategories",
+                    "@ItemType": "JsonDataSource"
+                }
+            }
+        }
+    },
+    "dataSourceWizardUrls": {
+        "DataSourceWizardAction": {
+            "http://localhost:5000/api/dashboard/data/DataSourceWizardAction": {
+                "GET": {
+                    "status": 405
+                }
+            }
+        },
+        "GetConnectionStringsAction": {
+            "http://localhost:5000/api/dashboard/data/GetConnectionStringsAction": {
+                "GET": {
+                    "status": 500,
+                    "Message": "A connection string provider is not configured. See https://docs.devexpress.com/Dashboard/118651 to allow end users use predefined connection strings."
+                }
+            }
+        }
+    }
+}

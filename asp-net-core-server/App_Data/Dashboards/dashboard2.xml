@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="es-BR">
+  <Title Text="ascasc" Alignment="Left" />
+  <DataSources>
+    <JsonDataSource Name="Support" ConnectionName="jsonSupport" RootElement="Employee" ComponentName="jsonDataSource1" />
+  </DataSources>
+  <Parameters>
+    <Parameter Name="parametro" Value="ascacsaca">
+      <StaticListLookUpSettings>
+        <Values>
+          <Value>ascascasc</Value>
+          <Value>ascacsaca</Value>
+        </Values>
+      </StaticListLookUpSettings>
+    </Parameter>
+  </Parameters>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="jsonDataSource1">
+      <DataItems>
+        <Measure DataMember="Employee" SummaryType="Count" DefaultId="DataItem0" />
+        <Measure DataMember="IssueType" SummaryType="Count" DefaultId="DataItem1" />
+        <Measure DataMember="ProductName" SummaryType="Count" DefaultId="DataItem2" />
+      </DataItems>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="jsonDataSource1">
+      <DataItems>
+        <Measure DataMember="IssueType" SummaryType="Count" DefaultId="DataItem0" />
+        <Measure DataMember="Employee" SummaryType="Count" DefaultId="DataItem1" />
+        <Measure DataMember="IssueType" SummaryType="Count" DefaultId="DataItem2" />
+      </DataItems>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+            <Simple>
+              <Value DefaultId="DataItem2" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="jsonDataSource1" />
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutGroup>
+          <LayoutItem DashboardItem="pivotDashboardItem1" />
+          <LayoutItem DashboardItem="chartDashboardItem1" />
+        </LayoutGroup>
+        <LayoutItem DashboardItem="pieDashboardItem1" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="New Dashboard" />
+  <DataSources>
+    <JsonDataSource Name="JSON Data Source" ConnectionName="JSON Connection" ComponentName="jsonDataSource1">
+      <Schema>
+        <Node Name="root" Type="System.Object" Selected="true" NodeType="Object">
+          <Node Name="Customers" Selected="true" NodeType="Array">
+            <Node Name="Address" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="City" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="CompanyName" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="ContactName" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="ContactTitle" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="Country" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="Fax" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="Id" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="Phone" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="PostalCode" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="Region" Type="System.String" Selected="true" NodeType="Property" />
+          </Node>
+        </Node>
+      </Schema>
+    </JsonDataSource>
+  </DataSources>
+</Dashboard>
