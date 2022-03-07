@@ -3,12 +3,24 @@ using DevExpress.DashboardAspNetCore;
 using DevExpress.DashboardCommon;
 using DevExpress.DashboardWeb;
 using DevExpress.DataAccess.Json;
+using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Native;
+using DevExpress.DataAccess.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System;
+using System.Web.UI;
+using System.Collections.Generic; 
+
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using System.Text.Json.Serialization;
 
 namespace AspNetCoreDashboardBackend {
     public class Startup {
@@ -40,7 +52,7 @@ namespace AspNetCoreDashboardBackend {
                 configurator.SetDashboardStorage(new DashboardFileStorage(FileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath));
                 configurator.SetDataSourceStorage(CreateDataSourceStorage());
                 configurator.ConfigureDataConnection += Configurator_ConfigureDataConnection;
-                configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
+                configurator.SetConnectionStringsProvider(new MyDataSourceWizardConnectionStringsProvider());
                 return configurator;
             });
         }
@@ -68,7 +80,7 @@ namespace AspNetCoreDashboardBackend {
             dataSourceStorage.RegisterDataSource("jsonDataSourceSupport", jsonDataSourceSupport.SaveToXml());
             DashboardJsonDataSource jsonDataSourceCategories = new DashboardJsonDataSource("Categories");
             jsonDataSourceCategories.ConnectionName = "jsonCategories";
-            //jsonDataSourceCategories.RootElement = "";
+            jsonDataSourceCategories.RootElement = "Customers";
             dataSourceStorage.RegisterDataSource("jsonDataSourceCategories", jsonDataSourceCategories.SaveToXml());
             return dataSourceStorage;
         }
@@ -88,4 +100,51 @@ namespace AspNetCoreDashboardBackend {
             }
         }
     }
+    public class MyDataSourceWizardConnectionStringsProvider : IDataSourceWizardConnectionStringsProvider {
+        public Dictionary<string, string> GetConnectionDescriptions() {
+            Dictionary<string, string> connections = new Dictionary<string, string>();
+            var requisicaoWeb = WebRequest.CreateHttp("http://191.252.3.79:8400/dashboardService/getView?viewName=appsettings");
+            requisicaoWeb.Method = "GET";
+            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
+            var resposta = requisicaoWeb.GetResponse();
+            var streamDados = resposta.GetResponseStream();
+            StreamReader reader = new StreamReader(streamDados);
+            object objResponse  = reader.ReadToEnd();
+            var data = JsonConvert.DeserializeObject<Component[]>(objResponse.ToString());
+            // dynamic[] yourArray = array.Cast();
+            foreach (var i in data)
+            {
+                connections.Add(i.uriconnection, i.uriconnection);
+            }
+            //   Customize the loaded connections list.
+            return connections;
+        }
+
+        public DataConnectionParametersBase GetDataConnectionParameters(string name) {
+            // Return custom connection parameters for the custom connection.
+            var requisicaoWeb = WebRequest.CreateHttp("http://191.252.3.79:8400/dashboardService/getView?viewName=appsettings");
+            requisicaoWeb.Method = "GET";
+            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
+            var resposta = requisicaoWeb.GetResponse();
+            var streamDados = resposta.GetResponseStream();
+            StreamReader reader = new StreamReader(streamDados);
+            object objResponse  = reader.ReadToEnd();
+            var data = JsonConvert.DeserializeObject<Component[]>(objResponse.ToString());
+            var finded = Array.Find(data, p => p.uriconnection == name);
+            System.Console.WriteLine();
+            if(finded.uriconnection == name){
+                    return new JsonSourceConnectionParameters() {
+                        JsonSource = new UriJsonSource(new Uri(Array.Find(data,p => p.uriconnection == name).uri))
+                    };
+                }
+                
+            throw new System.Exception("The connection string is undefined.");
+            }
+        }
+    public class Component
+    {
+        public string uriconnection { get; set; }
+        public string uri { get; set; }
+    }
+    
 }
