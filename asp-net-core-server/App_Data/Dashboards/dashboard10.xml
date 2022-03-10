@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="alexandre" />
+  <DataSources>
+    <JsonDataSource Name="JSON Data Source" ConnectionName="_view_ConsultaLotes" ComponentName="jsonDataSource1">
+      <Schema>
+        <Node Name="root" Selected="true" NodeType="Array">
+          <Node Name="_agendamento" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_autorizacaoautomatica" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_autorizacaodata" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_autorizacaofuncionarionome" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_credornome" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_data" Type="System.Nullable`1[System.DateTime]" Selected="true" NodeType="Property" />
+          <Node Name="_datainclusao" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_descricao" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_funcionarionome" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_grupo" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_iscancelado" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_liberado" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_lotecodigo" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_loteid" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_loteprocessamentoid" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_observacoes" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_observacoeserro" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_processamentocomerro" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_processamentofim" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_processamentoinicio" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_qtdlote" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_statusprocessamento" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_tipoprocessamentocodigo" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_tipoprocessamentodescricao" Type="System.String" Selected="true" NodeType="Property" />
+        </Node>
+      </Schema>
+    </JsonDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" DataSource="jsonDataSource1">
+      <DataItems>
+        <Dimension DataMember="_agendamento" DefaultId="DataItem0" />
+        <Measure DataMember="_autorizacaoautomatica" DefaultId="DataItem1" />
+        <Dimension DataMember="_autorizacaodata" DefaultId="DataItem2" />
+        <Dimension DataMember="_autorizacaofuncionarionome" DefaultId="DataItem3" />
+        <Dimension DataMember="_credornome" DefaultId="DataItem4" />
+        <Dimension DataMember="_data" DefaultId="DataItem5" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn DisplayMode="Image">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn>
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridDimensionColumn DisplayMode="Image">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn DisplayMode="Image">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn DisplayMode="Image">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="gridDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -49,7 +49,22 @@
         </Pane>
       </Panes>
     </Chart>
-    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="jsonDataSource1" />
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="jsonDataSource1">
+      <DataItems>
+        <Measure DataMember="Employee" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="ResolvedTime (Sum)" DefaultId="DataItem1" />
+        <Measure DataMember="IssueType" SummaryType="Count" DefaultId="DataItem2" />
+        <Measure DataMember="ProductName" SummaryType="Count" DefaultId="DataItem3" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem3" />
+      </Values>
+    </Pie>
   </Items>
   <LayoutTree>
     <LayoutGroup>

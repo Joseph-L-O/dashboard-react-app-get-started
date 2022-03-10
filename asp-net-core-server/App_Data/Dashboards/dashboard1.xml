@@ -40,39 +40,139 @@
         </Node>
       </Schema>
     </JsonDataSource>
+    <JsonDataSource Name="JSON Data Source 2" ConnectionName="_titulo_Parcela_Vencidas_Vincendas" ComponentName="jsonDataSource3">
+      <Schema>
+        <Node Name="root" Selected="true" NodeType="Array">
+          <Node Name="_atrasocontrato" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_diasatraso" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_fasehonorariotaxa" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_fasehonorariovalor" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_fasejurostaxa" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_fasejurosvalor" Type="System.Nullable`1[System.Double]" Selected="true" NodeType="Property" />
+          <Node Name="_fasemultataxa" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_fasemultavalor" Type="System.Nullable`1[System.Double]" Selected="true" NodeType="Property" />
+          <Node Name="_fasetaxadescricao" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_fasetotalvalor" Type="System.Nullable`1[System.Double]" Selected="true" NodeType="Property" />
+          <Node Name="_honorariosobreparcelasvincendas" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_honorariosobreprincipal" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_honorariotaxa" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_honorariovalor" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_isacordo" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_jurostaxa" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_jurosvalor" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_multataxa" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_multavalor" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          <Node Name="_numerodocumento" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_parcela" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_tituloid" Type="System.String" Selected="true" NodeType="Property" />
+          <Node Name="_totalvalor" Type="System.Nullable`1[System.Double]" Selected="true" NodeType="Property" />
+          <Node Name="_valor" Type="System.Nullable`1[System.Double]" Selected="true" NodeType="Property" />
+          <Node Name="_valorpago" Type="System.Object" Selected="true" NodeType="Property" />
+          <Node Name="_vencimento" Type="System.Nullable`1[System.DateTime]" Selected="true" NodeType="Property" />
+          <Node Name="id" Type="System.String" Selected="true" NodeType="Property" />
+        </Node>
+      </Schema>
+      <CalculatedFields>
+        <CalculatedField Name="vencimento" Expression="Remove( [_vencimento] ,10)   " />
+      </CalculatedFields>
+    </JsonDataSource>
   </DataSources>
   <Items>
-    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" DataSource="jsonDataSource1">
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" DataSource="jsonDataSource3">
       <DataItems>
-        <Dimension DataMember="Address" DefaultId="DataItem0" />
-        <Dimension DataMember="City" DefaultId="DataItem1" />
-        <Dimension DataMember="CompanyName" DefaultId="DataItem2" />
-        <Dimension DataMember="ContactName" DefaultId="DataItem3" />
-        <Dimension DataMember="ContactTitle" DefaultId="DataItem4" />
+        <Dimension DataMember="_tituloid" DefaultId="DataItem0" />
+        <Dimension DataMember="_fasehonorariotaxa" DefaultId="DataItem2" />
+        <Dimension DataMember="_atrasocontrato" DefaultId="DataItem1" />
+        <Dimension DataMember="_fasetotalvalor" DefaultId="DataItem3" />
+        <Measure DataMember="_fasemultavalor" DefaultId="DataItem4" />
+        <Dimension DataMember="vencimento" DefaultId="DataItem6" />
+        <Dimension DataMember="id" DefaultId="DataItem5" />
+        <Dimension DataMember="_parcela" DefaultId="DataItem7" />
+        <Measure DataMember="_diasatraso" DefaultId="DataItem8" />
       </DataItems>
       <GridColumns>
-        <GridDimensionColumn>
+        <GridDimensionColumn Weight="68.87096774193547">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="77.66129032258063">
           <Dimension DefaultId="DataItem0" />
         </GridDimensionColumn>
-        <GridDimensionColumn>
+        <GridDimensionColumn Weight="63.14516129032257">
           <Dimension DefaultId="DataItem1" />
         </GridDimensionColumn>
-        <GridDimensionColumn>
+        <GridDimensionColumn Weight="73.3064516129032">
           <Dimension DefaultId="DataItem2" />
         </GridDimensionColumn>
-        <GridDimensionColumn>
+        <GridDimensionColumn Weight="59.51612903225805">
           <Dimension DefaultId="DataItem3" />
         </GridDimensionColumn>
-        <GridDimensionColumn>
-          <Dimension DefaultId="DataItem4" />
+        <GridMeasureColumn Weight="64.59677419354837">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="67.84946236559138">
+          <Dimension DefaultId="DataItem6" />
         </GridDimensionColumn>
+        <GridDimensionColumn Weight="68.74327956989245">
+          <Dimension DefaultId="DataItem7" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="67.96118951612901">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
       </GridColumns>
-      <GridOptions />
+      <GridOptions ColumnWidthMode="Manual" />
     </Grid>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="jsonDataSource3">
+      <DataItems>
+        <Measure DataMember="_fasehonorariotaxa" DefaultId="DataItem1" />
+        <Dimension DataMember="_diasatraso" DefaultId="DataItem0" />
+        <Measure DataMember="_atrasocontrato" DefaultId="DataItem2" />
+        <Measure DataMember="_fasemultavalor" DefaultId="DataItem3" />
+        <Dimension DataMember="vencimento" DefaultId="DataItem4" />
+        <Measure DataMember="vencimento" SummaryType="Count" DefaultId="DataItem5" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+        <Argument DefaultId="DataItem4" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem3" />
+        <Value DefaultId="DataItem5" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="jsonDataSource3">
+      <DataItems>
+        <Measure DataMember="vencimento" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="_atrasocontrato" DefaultId="DataItem1" />
+        <Measure DataMember="_jurostaxa" SummaryType="Count" DefaultId="DataItem2" />
+        <Dimension DataMember="_fasejurostaxa" DefaultId="DataItem3" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem3" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+            <Simple>
+              <Value DefaultId="DataItem2" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
   </Items>
   <LayoutTree>
     <LayoutGroup>
-      <LayoutItem DashboardItem="gridDashboardItem1" />
+      <LayoutGroup Orientation="Vertical" Weight="1.2218675179569034">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="1.2218675179569034" />
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="1.2218675179569034" />
+      </LayoutGroup>
+      <LayoutItem DashboardItem="pieDashboardItem1" Weight="0.7781324820430966" />
     </LayoutGroup>
   </LayoutTree>
 </Dashboard>

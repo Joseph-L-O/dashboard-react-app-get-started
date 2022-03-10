@@ -19,6 +19,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Configuration;
 
 using System.Text.Json.Serialization;
 
@@ -100,10 +101,25 @@ namespace AspNetCoreDashboardBackend {
             }
         }
     }
+    public class Item
+    {
+        public object ConnectionStrings;
+        public object Logging;
+    }
+    
     public class MyDataSourceWizardConnectionStringsProvider : IDataSourceWizardConnectionStringsProvider {
+        public IFileProvider FileProvider { get; }
+
+        
         public Dictionary<string, string> GetConnectionDescriptions() {
+            dynamic items = null;
+            using (StreamReader r = new StreamReader("appsettings.Development.json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<dynamic>(json);
+            }
             Dictionary<string, string> connections = new Dictionary<string, string>();
-            var requisicaoWeb = WebRequest.CreateHttp("http://191.252.3.79:8400/dashboardService/getView?viewName=appsettings");
+            var requisicaoWeb = WebRequest.CreateHttp(items["ConnectionStrings"]["JSON Connection URL"].ToString());
             requisicaoWeb.Method = "GET";
             requisicaoWeb.UserAgent = "RequisicaoWebDemo";
             var resposta = requisicaoWeb.GetResponse();
@@ -122,7 +138,13 @@ namespace AspNetCoreDashboardBackend {
 
         public DataConnectionParametersBase GetDataConnectionParameters(string name) {
             // Return custom connection parameters for the custom connection.
-            var requisicaoWeb = WebRequest.CreateHttp("http://191.252.3.79:8400/dashboardService/getView?viewName=appsettings");
+            dynamic items = null;
+            using (StreamReader r = new StreamReader("appsettings.json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<dynamic>(json);
+            }
+            var requisicaoWeb = WebRequest.CreateHttp("http://"+items["ConnectionStrings"]["JSON Connection URL"].ToString());
             requisicaoWeb.Method = "GET";
             requisicaoWeb.UserAgent = "RequisicaoWebDemo";
             var resposta = requisicaoWeb.GetResponse();
