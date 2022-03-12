@@ -1,4 +1,5 @@
-[{
-    "hostName":"191.252.3.79",
-    "port":"8400"
-}]
+{
+    "hostName": "191.252.3.79",
+    "port": "8400",
+    "viewName": "appsettings"
+}

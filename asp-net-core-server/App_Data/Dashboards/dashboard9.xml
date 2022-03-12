@@ -223,14 +223,14 @@
   <LayoutTree>
     <LayoutGroup>
       <LayoutTabContainer DashboardItem="tabContainerDashboardItem1">
-        <LayoutTabPage DashboardItem="dashboardTabPage1">
-          <LayoutItem DashboardItem="gridDashboardItem1" />
-        </LayoutTabPage>
         <LayoutTabPage DashboardItem="dashboardTabPage2">
           <LayoutItem DashboardItem="pieDashboardItem1" />
         </LayoutTabPage>
         <LayoutTabPage DashboardItem="dashboardTabPage3">
           <LayoutItem DashboardItem="rangeFilterDashboardItem1" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="dashboardTabPage1">
+          <LayoutItem DashboardItem="gridDashboardItem1" />
         </LayoutTabPage>
         <LayoutTabPage DashboardItem="dashboardTabPage4">
           <LayoutItem DashboardItem="pivotDashboardItem1" />

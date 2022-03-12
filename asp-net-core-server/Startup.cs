@@ -14,10 +14,9 @@ using Microsoft.Extensions.FileProviders;
 using System;
 using System.Web.UI;
 using System.Collections.Generic; 
-
+using System.Text.Json;
 using System.Net;
 using System.IO;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
 
@@ -32,6 +31,7 @@ namespace AspNetCoreDashboardBackend {
 
         public IConfiguration Configuration { get; }
         public IFileProvider FileProvider { get; }
+        public KestrelConfigurationLoader loader { get;set; }
 
         public void ConfigureServices(IServiceCollection services) {
             services
@@ -59,7 +59,7 @@ namespace AspNetCoreDashboardBackend {
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            // Registers the DevExpress middleware.            
+            // Registers the DevExpress middleware.         
             app.UseDevExpressControls();
             // Registers routing.
             app.UseRouting();
@@ -71,36 +71,76 @@ namespace AspNetCoreDashboardBackend {
                 // Requires CORS policies.
                 endpoints.MapControllers().RequireCors("CorsPolicy");
             });
+            
         }
 
         public DataSourceInMemoryStorage CreateDataSourceStorage() {
+            var data = JsonSerializer.Deserialize<Component[]>(Convert.ToString(new KestrelConfigurationLoader().getdatasource()));
             DataSourceInMemoryStorage dataSourceStorage = new DataSourceInMemoryStorage();
-            DashboardJsonDataSource jsonDataSourceSupport = new DashboardJsonDataSource("Support");
-            jsonDataSourceSupport.ConnectionName = "jsonSupport";
-            jsonDataSourceSupport.RootElement = "Employee";
-            dataSourceStorage.RegisterDataSource("jsonDataSourceSupport", jsonDataSourceSupport.SaveToXml());
-            DashboardJsonDataSource jsonDataSourceCategories = new DashboardJsonDataSource("Categories");
-            jsonDataSourceCategories.ConnectionName = "jsonCategories";
-            jsonDataSourceCategories.RootElement = "Customers";
-            dataSourceStorage.RegisterDataSource("jsonDataSourceCategories", jsonDataSourceCategories.SaveToXml());
+            foreach(var i in data){
+                DashboardJsonDataSource jsonDataSourceData = new DashboardJsonDataSource(i.uriconnection.ToString());
+                jsonDataSourceData.ConnectionName = $"json{i.uriconnection}";
+                jsonDataSourceData.RootElement = i.uriconnection.ToString();
+                dataSourceStorage.RegisterDataSource($"jsonDataSource{i.uriconnection}", jsonDataSourceData.SaveToXml());
+            }
+            // DashboardJsonDataSource jsonDataSourceSupport = new DashboardJsonDataSource("Support");
+            // jsonDataSourceSupport.ConnectionName = "jsonSupport";
+            // jsonDataSourceSupport.RootElement = "Employee";
+            // dataSourceStorage.RegisterDataSource("jsonDataSourceSupport", jsonDataSourceSupport.SaveToXml());
+            // DashboardJsonDataSource jsonDataSourceCategories = new DashboardJsonDataSource("Categories");
+            // jsonDataSourceCategories.ConnectionName = "jsonCategories";
+            // jsonDataSourceCategories.RootElement = "Customers";
+            // dataSourceStorage.RegisterDataSource("jsonDataSourceCategories", jsonDataSourceCategories.SaveToXml());
+            // DashboardJsonDataSource jsonDataSourceSupport = new DashboardJsonDataSource("Support");
             return dataSourceStorage;
         }
 
         private void Configurator_ConfigureDataConnection(object sender, ConfigureDataConnectionWebEventArgs e) {
-            if (e.ConnectionName == "jsonSupport") {
-                Uri fileUri = new Uri(FileProvider.GetFileInfo("App_Data/Support.json").PhysicalPath, UriKind.RelativeOrAbsolute);
+            var data = JsonSerializer.Deserialize<Component[]>(Convert.ToString(new KestrelConfigurationLoader().getdatasource()));
+            foreach(var i in data){ 
+                if (e.ConnectionName == i.uriconnection) {
+                Uri fileUri = new Uri(i.uri, UriKind.RelativeOrAbsolute);
                 JsonSourceConnectionParameters jsonParams = new JsonSourceConnectionParameters();
                 jsonParams.JsonSource = new UriJsonSource(fileUri);
                 e.ConnectionParameters = jsonParams;
+                }
             }
-            if (e.ConnectionName == "jsonCategories") {
-                Uri fileUri = new Uri(FileProvider.GetFileInfo("App_Data/Categories.json").PhysicalPath, UriKind.RelativeOrAbsolute);
-                JsonSourceConnectionParameters jsonParams = new JsonSourceConnectionParameters();
-                jsonParams.JsonSource = new UriJsonSource(fileUri);
-                e.ConnectionParameters = jsonParams;
+            // if (e.ConnectionName == "jsonSupport") {
+            //     Uri fileUri = new Uri(FileProvider.GetFileInfo("App_Data/Support.json").PhysicalPath, UriKind.RelativeOrAbsolute);
+            //     JsonSourceConnectionParameters jsonParams = new JsonSourceConnectionParameters();
+            //     jsonParams.JsonSource = new UriJsonSource(fileUri);
+            //     e.ConnectionParameters = jsonParams;
+            // }
+            // if (e.ConnectionName == "jsonCategories") {
+            //     Uri fileUri = new Uri(FileProvider.GetFileInfo("App_Data/Categories.json").PhysicalPath, UriKind.RelativeOrAbsolute);
+            //     JsonSourceConnectionParameters jsonParams = new JsonSourceConnectionParameters();
+            //     jsonParams.JsonSource = new UriJsonSource(fileUri);
+            //     e.ConnectionParameters = jsonParams;
+            // }
+        }
+        
+    }
+
+    public class KestrelConfigurationLoader{
+        public object getdatasource(){
+            
+            dynamic items = null;
+            using (StreamReader r = new StreamReader("dashboardAPI.json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonSerializer.Deserialize<DashboardAPI>(Convert.ToString(json));
             }
+            var requisicaoWeb = WebRequest.CreateHttp($"http://{items.hostName}:{items.port}/dashboardService/getView?viewName={items.viewName}");
+            requisicaoWeb.Method = "GET";
+            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
+            var resposta = requisicaoWeb.GetResponse();
+            var streamDados = resposta.GetResponseStream();
+            StreamReader reader = new StreamReader(streamDados);
+            dynamic objResponse  = reader.ReadToEnd();
+            return objResponse;
         }
     }
+
     public class Item
     {
         public object ConnectionStrings;
@@ -112,21 +152,8 @@ namespace AspNetCoreDashboardBackend {
 
         
         public Dictionary<string, string> GetConnectionDescriptions() {
-            dynamic items = null;
-            using (StreamReader r = new StreamReader("appsettings.Development.json"))
-            {
-                string json = r.ReadToEnd();
-                items = JsonConvert.DeserializeObject<dynamic>(json);
-            }
             Dictionary<string, string> connections = new Dictionary<string, string>();
-            var requisicaoWeb = WebRequest.CreateHttp(items["ConnectionStrings"]["JSON Connection URL"].ToString());
-            requisicaoWeb.Method = "GET";
-            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
-            var resposta = requisicaoWeb.GetResponse();
-            var streamDados = resposta.GetResponseStream();
-            StreamReader reader = new StreamReader(streamDados);
-            object objResponse  = reader.ReadToEnd();
-            var data = JsonConvert.DeserializeObject<Component[]>(objResponse.ToString());
+            var data = JsonSerializer.Deserialize<Component[]>(Convert.ToString(new KestrelConfigurationLoader().getdatasource()));
             // dynamic[] yourArray = array.Cast();
             foreach (var i in data)
             {
@@ -138,22 +165,8 @@ namespace AspNetCoreDashboardBackend {
 
         public DataConnectionParametersBase GetDataConnectionParameters(string name) {
             // Return custom connection parameters for the custom connection.
-            dynamic items = null;
-            using (StreamReader r = new StreamReader("appsettings.json"))
-            {
-                string json = r.ReadToEnd();
-                items = JsonConvert.DeserializeObject<dynamic>(json);
-            }
-            var requisicaoWeb = WebRequest.CreateHttp("http://"+items["ConnectionStrings"]["JSON Connection URL"].ToString());
-            requisicaoWeb.Method = "GET";
-            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
-            var resposta = requisicaoWeb.GetResponse();
-            var streamDados = resposta.GetResponseStream();
-            StreamReader reader = new StreamReader(streamDados);
-            object objResponse  = reader.ReadToEnd();
-            var data = JsonConvert.DeserializeObject<Component[]>(objResponse.ToString());
+            Component[] data = JsonSerializer.Deserialize<Component[]>(Convert.ToString(new KestrelConfigurationLoader().getdatasource()));
             var finded = Array.Find(data, p => p.uriconnection == name);
-            System.Console.WriteLine();
             if(finded.uriconnection == name){
                     return new JsonSourceConnectionParameters() {
                         JsonSource = new UriJsonSource(new Uri(Array.Find(data,p => p.uriconnection == name).uri))
@@ -163,6 +176,29 @@ namespace AspNetCoreDashboardBackend {
             throw new System.Exception("The connection string is undefined.");
             }
         }
+    public class DashboardAPI
+    {
+        public string hostName { get;set; }
+        public string port { get;set; }
+        public string viewName { get;set; }
+        public DashboardAPIKestrel Kestrel { get;set; }
+    }
+    public class DashboardAPIKestrel
+    {
+        public DashboardAPIKestrelEndPoints Kestrel { get;set; }
+    }
+    public class DashboardAPIKestrelEndPoints
+    {
+        public DashboardAPIKestrelEndPointsHttp EndPoints { get;set; }
+    }
+    public class DashboardAPIKestrelEndPointsHttp
+    {
+        public DashboardAPIKestrelEndPointsHttpUrl Http { get;set; }
+    }
+    public class DashboardAPIKestrelEndPointsHttpUrl
+    {
+        public string Url { get;set; }
+    }
     public class Component
     {
         public string uriconnection { get; set; }
